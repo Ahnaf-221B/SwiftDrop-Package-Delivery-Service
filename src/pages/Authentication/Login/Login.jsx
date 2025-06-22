@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import SocialLogin from "../SocialLogin/SocialLogin";
 // import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
@@ -62,7 +63,7 @@ const Login = () => {
 						</medium>
 					</p>
 				</form>
-				{/* <SocialLogin></SocialLogin> */}
+				<SocialLogin></SocialLogin>
 			</div>
 		</div>
 	);
