@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
-// import SocialLogin from "../SocialLogin/SocialLogin";
+import useAuth from "../../../hooks/useAuth";
+import { toast, Bounce } from "react-toastify";
 
 const Login = () => {
 	const {
@@ -11,8 +12,41 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
+	const { signIn } = useAuth();
+	const location = useLocation();
+	const navigate = useNavigate();
+
 	const onSubmit = (data) => {
-		console.log(data);
+		signIn(data.email, data.password)
+			.then((result) => {
+				toast.success("Log in successful", {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+					transition: Bounce,
+				});
+				console.log(result.user);
+				navigate(`${location.state ? location.state : "/"}`);
+			})
+			.catch((error) => {
+				toast.warn("Invalid mail or password", {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+					transition: Bounce,
+				});
+				console.log(error);
+			});
 	};
 
 	return (

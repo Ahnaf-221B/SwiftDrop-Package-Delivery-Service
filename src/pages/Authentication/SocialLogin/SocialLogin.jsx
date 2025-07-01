@@ -1,20 +1,46 @@
-import React from 'react'
-import useAuth from '../../../hooks/useAuth';
+import React from "react";
+import useAuth from "../../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast, Bounce } from "react-toastify";
 
 const SocialLogin = () => {
-    
-    const { signInWithGoogle } = useAuth();
+	const { signInWithGoogle } = useAuth();
+	const location = useLocation();
+	const navigate = useNavigate();
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(result => {
-                console.log(result.user)
-            })
-            .catch(error => {
-                console.error(error);
-            })
-        }
-  return (
+	const handleGoogleSignIn = () => {
+		signInWithGoogle()
+			.then((result) => {
+				toast.success("Log in successful", {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+					transition: Bounce,
+				});
+				console.log(result.user);
+				navigate(`${location.state ? location.state : "/"}`);
+			})
+			.catch((error) => {
+				toast.warn("Invalid mail or password", {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: false,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+					transition: Bounce,
+				});
+				console.log(error);
+			});
+	};
+	return (
 		<div className="text-center">
 			<p className="mb-4">OR</p>
 			<button
@@ -52,6 +78,6 @@ const SocialLogin = () => {
 			</button>
 		</div>
 	);
-}
+};
 
-export default SocialLogin
+export default SocialLogin;
