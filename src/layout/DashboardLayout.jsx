@@ -13,7 +13,7 @@ const DashboardLayout = () => {
 	return (
 		<div className="drawer lg:drawer-open">
 			<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-			<div className="drawer-content flex flex-col">
+			<div className="drawer-content flex flex-col ">
 				{/* Navbar */}
 				<div className="navbar bg-base-300 w-full lg:hidden">
 					<div className="flex-none ">
@@ -39,8 +39,11 @@ const DashboardLayout = () => {
 					</div>
 					<div className="mx-2 flex-1 px-2 lg:hidden">Dashboard</div>
 				</div>
+				
+					<Outlet ></Outlet>
+				
 				{/* Page content here */}
-				<Outlet></Outlet>
+				
 				{/* Page content here */}
 			</div>
 			<div className="drawer-side">

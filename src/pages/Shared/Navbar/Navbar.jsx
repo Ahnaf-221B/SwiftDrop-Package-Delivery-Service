@@ -28,12 +28,16 @@ const Navbar = () => {
 			<li>
 				<NavLink to="/sendparcel">Send A Parcel</NavLink>
 			</li>
-			{
-				user && <><li>
-				<NavLink to="/dashboard">Dashboard</NavLink>
-			</li></>
-			}
-			
+			<li>
+				<NavLink to="/bearider">Be A Rider</NavLink>
+			</li>
+			{user && (
+				<>
+					<li>
+						<NavLink to="/dashboard">Dashboard</NavLink>
+					</li>
+				</>
+			)}
 		</>
 	);
 	return (
@@ -64,9 +68,9 @@ const Navbar = () => {
 						{navItems}
 					</ul>
 				</div>
-				<a className=" btn-ghost text-xl">
+				<span className=" btn-ghost text-xl">
 					<ProFastLogo></ProFastLogo>
-				</a>
+				</span>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">{navItems}</ul>
