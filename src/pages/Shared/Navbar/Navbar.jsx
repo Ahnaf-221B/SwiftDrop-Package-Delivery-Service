@@ -78,9 +78,16 @@ const Navbar = () => {
 						Log Out
 					</button>
 				) : (
+					<>
 					<Link to="/login" className="btn btn-primary  text-black">
 						Login
 					</Link>
+					
+					<Link to="/register" className="btn btn-primary  text-black">
+						Register
+					</Link>
+					</>
+					
 				)}
 			</div>
 		</div>

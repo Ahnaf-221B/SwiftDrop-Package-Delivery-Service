@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
 				element: <PaymentHistory></PaymentHistory>
 			},
 			{
-				path: '/track',
+				path: 'track',
 				element:<TrackParcel></TrackParcel>
 			}
 		],
