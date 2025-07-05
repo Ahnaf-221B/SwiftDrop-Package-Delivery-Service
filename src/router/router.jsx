@@ -14,6 +14,9 @@ import MyParcel from "../pages/Dashboard/MyParcel/MyParcel";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import TrackParcel from "../pages/Dashboard/TrackParcel/TrackParcel";
 import BeARider from "../pages/Dashboard/BeARider/BeARider";
+import PendingRiders from "../pages/Dashboard/PendingRiders/PendingRiders";
+import ActiveRiders from "../pages/Dashboard/ActiveRiders/ActiveRiders";
+import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
 
 export const router = createBrowserRouter([
 	{
@@ -87,6 +90,18 @@ export const router = createBrowserRouter([
 				path: "track",
 				element: <TrackParcel></TrackParcel>,
 			},
+			{
+				path : 'pendingriders',
+				element : <PendingRiders></PendingRiders>
+			},
+			{
+				path:'activeriders',
+				element: <ActiveRiders></ActiveRiders>
+			},
+			{
+				path:'makeadmin',
+				element: <MakeAdmin></MakeAdmin>
+			}
 		],
 	},
 ]);
