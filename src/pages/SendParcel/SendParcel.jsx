@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -22,7 +22,7 @@ const SendParcel = () => {
 	} = useForm();
 
 	
-
+const navigate = useNavigate()
   const {user} =useAuth()
 const axiosSecure = useAxiosSecure()
 	const onSubmit = (data) => {
@@ -117,6 +117,7 @@ const axiosSecure = useAxiosSecure()
 						timer: 1500,
 						showConfirmButton: false,
 					});
+					navigate('/dashboard/myparcel')
 				}
 			});
 			}

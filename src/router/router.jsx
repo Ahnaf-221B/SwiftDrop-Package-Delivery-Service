@@ -20,6 +20,9 @@ import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
 import Forbidden from "../pages/Forbidden/forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import AssignRider from "../pages/Dashboard/AssignRider/AssignRider";
+import RiderRoute from "../routes/RiderRoute";
+import PendingDeliveries from "../pages/Dashboard/PendingDeliveries/PendingDeliveries";
+import CompletedDeliveries from "../pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
 
 
 export const router = createBrowserRouter([
@@ -55,9 +58,9 @@ export const router = createBrowserRouter([
 				loader: () => fetch("/servicecenter.json"),
 			},
 			{
-				path: '/forbidden',
-				element: <Forbidden></Forbidden>
-			}
+				path: "/forbidden",
+				element: <Forbidden></Forbidden>,
+			},
 		],
 	},
 	{
@@ -99,21 +102,47 @@ export const router = createBrowserRouter([
 				element: <TrackParcel></TrackParcel>,
 			},
 			{
-				path:'assignrider',
-				element: <AssignRider></AssignRider>
+				path: "pending-deliveries",
+				element: (
+					<RiderRoute>
+						<PendingDeliveries></PendingDeliveries>
+					</RiderRoute>
+				),
 			},
 			{
-				path : 'pendingriders',
-				element : <AdminRoute><PendingRiders></PendingRiders></AdminRoute>
+				path: 'completed-deliveries',
+				element: <RiderRoute><CompletedDeliveries></CompletedDeliveries></RiderRoute>
+
 			},
 			{
-				path:'activeriders',
-				element: <AdminRoute><ActiveRiders></ActiveRiders></AdminRoute>
+				path: "assignrider",
+				element: <AssignRider></AssignRider>,
 			},
 			{
-				path:'makeadmin',
-				element:<AdminRoute> <MakeAdmin></MakeAdmin></AdminRoute>
-			}
+				path: "pendingriders",
+				element: (
+					<AdminRoute>
+						<PendingRiders></PendingRiders>
+					</AdminRoute>
+				),
+			},
+			{
+				path: "activeriders",
+				element: (
+					<AdminRoute>
+						<ActiveRiders></ActiveRiders>
+					</AdminRoute>
+				),
+			},
+			{
+				path: "makeadmin",
+				element: (
+					<AdminRoute>
+						{" "}
+						<MakeAdmin></MakeAdmin>
+					</AdminRoute>
+				),
+			},
 		],
 	},
 ]);
