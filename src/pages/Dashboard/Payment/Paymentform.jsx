@@ -10,6 +10,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useTrackingLogger from "../../../hooks/useTrackingLogger";
 
 const Paymentform = () => {
 	const stripe = useStripe();
@@ -18,6 +19,7 @@ const Paymentform = () => {
 	const navigate = useNavigate();
 	const { user } = useAuth();
 	const { parcelId } = useParams();
+	const { logTracking } = useTrackingLogger();
 	console.log(parcelId);
 
 	const [error, setError] = useState("");
@@ -97,6 +99,14 @@ const Paymentform = () => {
 							html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
 							confirmButtonText: "Go to My Parcels",
 						});
+
+						await logTracking({
+							tracking_id: parcelInfo.tracking_id,
+							status: "payment_done",
+							details: `Paid by ${user.displayName}`,
+							updated_by: user.email,
+						});
+						
 						navigate("/dashboard/myparcel");
 					}
 				}
